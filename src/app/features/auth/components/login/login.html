@@ -1,1 +1,82 @@
-<p>login works!</p>
+<div class="auth-container">
+
+  <div class="brand-side">
+    <div class="overlay">
+      <h1>Beauty Glam</h1>
+      <p>
+        Descubre maquillaje, belleza y estilo en un solo lugar ✨
+      </p>
+    </div>
+  </div>
+
+  <div class="auth-card">
+
+    <input type="radio" name="tab" id="login" checked>
+    <input type="radio" name="tab" id="register">
+
+    <div class="tabs">
+      <label for="login">Iniciar sesión</label>
+      <label for="register">Crear cuenta</label>
+    </div>
+
+    <div class="forms">
+
+      <!-- LOGIN -->
+      <div class="form login-form">
+
+        <h2>Bienvenidos 💄</h2>
+
+        <div class="input-group">
+          <label>Usuario</label>
+          <input
+            type="text"
+            placeholder="Ingresa tu usuario"
+            [(ngModel)]="user">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Ingresa tu contraseña"
+            [(ngModel)]="password">
+        </div>
+
+        <button type="button" (click)="sendLogin()">
+          Ingresar
+        </button>
+
+      </div>
+
+      <!-- REGISTER -->
+      <div class="form register-form">
+
+        <h2>Crea tu cuenta ✨</h2>
+
+        <div class="input-group">
+          <label>Usuario</label>
+          <input
+            type="text"
+            placeholder="Crea tu usuario"
+            [(ngModel)]="user">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Ingresa tu contraseña"
+            [(ngModel)]="password">
+        </div>
+
+        <button type="button">
+          Registrarse
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

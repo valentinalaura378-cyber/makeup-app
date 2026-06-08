@@ -1,8 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { LoginRequest } from '../../models/auth';
+import { AuthService } from '../../services/auth';
+import { Router } from '@angular/router';
+import { Session } from '../../../../shared/services/session';
+
 @Component({
-  selector: 'app-login',
-  imports: [],
+  selector: 'login',
+  imports: [FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss',
+  styleUrl: './login.scss'
 })
-export class Login {}
+export class Login {
+
+  private _AuthService = inject(AuthService);
+  private _sessionService = inject(Session);
+  private router = inject(Router);
+
+  user = '';
+  password = '';
+
+  public error = 'error';
+
+  sendLogin() {
+
+    const body: LoginRequest = {
+      email: this.user,
+      password: this.password
+    };
+
+    this._AuthService.login(body).subscribe({
+      next: (res) => {
+        this._sessionService.setToken(res.token);
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.error = err.error.message;
+        console.log(this.error);
+      },
+    });
+  }
+}

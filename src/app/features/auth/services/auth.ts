@@ -12,9 +12,7 @@ export class AuthService {
   private readonly API_URL = 'https://backend-makeup-6i49.onrender.com/api/v1';
 
   login(credentials: LoginRequest) {
-    return this.http
-      .post<LoginResponse>(`${this.API_URL}/auth/login`, credentials)
-      .pipe(
+    return this.http.post<LoginResponse>(`${this.API_URL}/auth/login`, credentials).pipe(
         tap({
           next: (res) => {
             console.log(res);

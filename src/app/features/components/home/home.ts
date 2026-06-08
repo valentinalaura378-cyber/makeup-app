@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Session } from '../../../shared/services/session';
 
 @Component({
   selector: 'app-home',
@@ -6,4 +7,15 @@ import { Component } from '@angular/core';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {}
+export class Home {
+
+  token: string | null = '';
+
+  private _sessionService = inject(Session);
+
+  recuperarToken() {
+  this.token = this._sessionService.getToken();
+
+  }
+
+}
