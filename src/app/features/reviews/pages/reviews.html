@@ -1,0 +1,89 @@
+<div class="reviews-container">
+
+  <div class="header">
+    <div class="header-content">
+      <span class="tag">⭐ Reviews</span>
+      <h1>Reseñas de Clientes</h1>
+      <p>
+        Gestiona las opiniones y valoraciones.
+      </p>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <button (click)="createReview()">
+      ➕ Nueva Review
+    </button>
+  </div>
+
+  <div class="reviews-grid">
+
+    <div
+      class="review-card"
+      *ngFor="let review of reviews">
+
+      <div class="top">
+
+        <div class="avatar">
+          {{ review.user.charAt(0).toUpperCase() }}
+        </div>
+
+        <span
+          class="status"
+          [ngClass]="review.isActive ? 'active' : 'inactive'">
+
+          {{ review.isActive ? 'Activa' : 'Inactiva' }}
+
+        </span>
+
+      </div>
+
+      <h2>{{ review.user }}</h2>
+
+      <div class="rating">
+
+        {{ '⭐'.repeat(review.rating) }}
+
+      </div>
+
+      <p class="comment">
+
+        {{ review.comment }}
+
+      </p>
+
+      <div class="dates">
+
+        <span>
+          Creada:
+          {{ review.createdAt | date:'short' }}
+        </span>
+
+        <span>
+          Actualizada:
+          {{ review.updatedAt | date:'short' }}
+        </span>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          class="edit-btn"
+          (click)="editReview(review)">
+          Editar
+        </button>
+
+        <button
+          class="delete-btn"
+          (click)="deleteReview(review._id)">
+          Eliminar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,104 @@
+<div class="brands-container">
+
+  <section class="header">
+
+    <div class="header-content">
+
+      <span class="tag">
+        🏷️ Gestión de Marcas
+      </span>
+
+      <h1>Marcas de Maquillaje</h1>
+
+      <p>
+        Administra las marcas registradas en el sistema.
+      </p>
+
+    </div>
+
+  </section>
+
+  <div class="search-container">
+
+    <input
+      type="text"
+      placeholder="Buscar marca..." />
+
+    <button (click)="createBrand()">
+      Nueva Marca
+    </button>
+
+  </div>
+
+  <div *ngIf="brands.length === 0">
+
+    <h2>No hay marcas registradas</h2>
+
+  </div>
+
+  <div
+    class="brands-grid"
+    *ngIf="brands.length > 0">
+
+    <div
+      class="brand-card"
+      *ngFor="let brand of brands">
+
+      <div class="brand-top">
+
+        <div class="brand-logo">
+          {{ brand.name.charAt(0).toUpperCase() }}
+        </div>
+
+        <span
+          class="status"
+          [class.active]="brand.isActive"
+          [class.inactive]="!brand.isActive">
+
+          {{ brand.isActive ? 'Activa' : 'Inactiva' }}
+
+        </span>
+
+      </div>
+
+      <h2>{{ brand.name }}</h2>
+
+      <p class="country">
+        🌎 {{ brand.country }}
+      </p>
+
+      <div class="dates">
+
+        <span>
+          Creada:
+          {{ brand.createdAt | date:'dd/MM/yyyy' }}
+        </span>
+
+        <span>
+          Actualizada:
+          {{ brand.updatedAt | date:'dd/MM/yyyy' }}
+        </span>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          class="edit-btn"
+          (click)="editBrand(brand)">
+          Editar
+        </button>
+
+        <button
+          class="delete-btn"
+          (click)="deleteBrand(brand._id!)">
+          Eliminar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

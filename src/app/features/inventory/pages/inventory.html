@@ -1,0 +1,91 @@
+<div class="inventory-container">
+
+  <div class="header">
+    <div class="header-content">
+      <span class="tag">📦 Inventario</span>
+      <h1>Gestión de Inventario</h1>
+      <p>
+        Administra el stock de productos de maquillaje.
+      </p>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <button (click)="createItem()">
+      ➕ Nuevo Inventario
+    </button>
+  </div>
+
+  <div class="inventory-grid">
+
+    <div
+      class="inventory-card"
+      *ngFor="let item of items">
+
+      <div class="top">
+
+        <div class="icon">
+          📦
+        </div>
+
+        <span
+          class="status"
+          [ngClass]="item.isActive ? 'active' : 'inactive'">
+
+          {{ item.isActive ? 'Activo' : 'Inactivo' }}
+
+        </span>
+
+      </div>
+
+      <h2>{{ item.productName }}</h2>
+
+      <div class="info">
+
+        <p>
+          <strong>Cantidad:</strong>
+          {{ item.quantity }}
+        </p>
+
+        <p>
+          <strong>Ubicación:</strong>
+          {{ item.location || 'No definida' }}
+        </p>
+
+      </div>
+
+      <div class="dates">
+
+        <span>
+          Creado:
+          {{ item.createdAt | date:'short' }}
+        </span>
+
+        <span>
+          Actualizado:
+          {{ item.updatedAt | date:'short' }}
+        </span>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          class="edit-btn"
+          (click)="editItem(item)">
+          Editar
+        </button>
+
+        <button
+          class="delete-btn"
+          (click)="deleteItem(item._id)">
+          Eliminar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -42,9 +42,13 @@
             [(ngModel)]="password">
         </div>
 
-        <button type="button" (click)="sendLogin()">
+        <button
+          type="button"
+          (click)="sendLogin()">
           Ingresar
         </button>
+
+        <h3>{{ error }}</h3>
 
       </div>
 
@@ -69,9 +73,13 @@
             [(ngModel)]="password">
         </div>
 
-        <button type="button">
+        <button
+          type="button"
+          (click)="sendRegister()">
           Registrarse
         </button>
+
+        <h3>{{ error }}</h3>
 
       </div>
 

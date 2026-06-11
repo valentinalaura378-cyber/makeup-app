@@ -1,0 +1,131 @@
+<div class="makeups-container">
+
+  <div class="header">
+
+    <div class="header-content">
+
+      <span class="tag">
+        💄 Catálogo Makeup
+      </span>
+
+      <h1>
+        Productos de Maquillaje
+      </h1>
+
+      <p>
+        Gestiona todos los productos de maquillaje,
+        crea nuevos productos, edita información
+        y controla el stock disponible.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="search-container">
+
+    <input
+      type="text"
+      placeholder="Buscar maquillaje..."
+    >
+
+    <button (click)="createMakeup()">
+      ➕ Nuevo Producto
+    </button>
+
+  </div>
+
+  <div class="products-grid">
+
+    <div
+      class="product-card"
+      *ngFor="let makeup of makeups">
+
+      <div class="image-container">
+
+        <img
+          src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800"
+          alt="Makeup">
+
+        <span
+          class="status"
+          [class.active]="makeup.isActive"
+          [class.inactive]="!makeup.isActive">
+
+          {{ makeup.isActive ? 'Disponible' : 'Oculto' }}
+
+        </span>
+
+      </div>
+
+      <div class="product-info">
+
+        <h2>
+          {{ getEmoji(makeup.category) }}
+          {{ makeup.name }}
+        </h2>
+
+        <p class="brand">
+          🏷️ Marca:
+          {{ makeup.brand }}
+        </p>
+
+        <p class="category">
+          📂 Categoría:
+          {{ makeup.category }}
+        </p>
+
+        <div class="details">
+
+          <span class="price">
+            $ {{ makeup.price | number }}
+          </span>
+
+          <span>
+            📦 Stock:
+            {{ makeup.stock }}
+          </span>
+
+        </div>
+
+        <div class="dates">
+
+          <span>
+            📅 Creado:
+            {{ makeup.createdAt | date:'dd/MM/yyyy' }}
+          </span>
+
+          <span>
+            🔄 Actualizado:
+            {{ makeup.updatedAt | date:'dd/MM/yyyy' }}
+          </span>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="edit-btn"
+            (click)="editMakeup(makeup)">
+
+            ✏️ Editar
+
+          </button>
+
+          <button
+            class="delete-btn"
+            (click)="deleteMakeup(makeup._id!)">
+
+            🗑️ Eliminar
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
